@@ -38,6 +38,7 @@ RCT_EXPORT_MODULE(SplashScreen)
         // https://github.com/crazycodeboy/react-native-splash-screen/pull/502/files
         UIStoryboard *sb = [UIStoryboard storyboardWithName:splashScreen bundle:nil];
         UIViewController *vc = [sb instantiateViewControllerWithIdentifier:splashScreen];
+        loadingView = vc.view;
         CGRect frame = rootView.frame;
         frame.origin = CGPointMake(0, 0);
         loadingView.frame = frame;
