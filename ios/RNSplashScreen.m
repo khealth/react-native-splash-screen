@@ -34,7 +34,11 @@ RCT_EXPORT_MODULE(SplashScreen)
 
 + (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
     if (!loadingView) {
-        loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
+        // this solution is an extension of the following
+        // https://github.com/crazycodeboy/react-native-splash-screen/pull/502/files
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:splashScreen bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:splashScreen];
+        loadingView = vc.view;
         CGRect frame = rootView.frame;
         frame.origin = CGPointMake(0, 0);
         loadingView.frame = frame;
